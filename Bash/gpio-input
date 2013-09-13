@@ -1,0 +1,29 @@
+#!/bin/bash
+
+
+
+gpio mode 14 in
+
+stato=`gpio read 14`
+
+
+
+while true
+
+do
+
+
+
+  stato=`gpio read 14`
+
+   #echo $stato
+
+        if [ $stato = 0 ]; then
+
+             ls
+
+             break
+
+        fi
+
+done
