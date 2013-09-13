@@ -1,34 +1,30 @@
 #!/bin/bash
+# This is a bash script thath check your Raspberry CPU temperature and if it reach a custom treashold it send you an email.
+# You can set this to start every X minute with cronjob.
 
 
+############ Parameters ############
 
-############ Parametri da impostare ############
 user="pi"
 tempmax="55"
-mittente="youremail@gmail.com"
-dest="youremailoranother@gmail.com"
+sender="youremail@gmail.com"
+receiver="youremailoranother@gmail.com"
 smtp="smtp.gmail.com:587"
 username="youremail"	# WITHOUT @gmail.com
 pass="yourpassword"
 
-############ Fine Parametri ############
-
+#####################################
 
 
 temp="`cat /sys/class/thermal/thermal_zone0/temp | cut -c1-2`"
 
 if [ "$temp" -ge "$tempmax" ]; then
 
- titolotemp="Allarme temperatura raspberry!"
+ object="Raspberry Temperature Alarm!"
 
- tempresult="Occhio! Il raspberry ha superato la soglia di temperatura di controllo! Ora è³ a $temp
+ tempresult="Watch! Raspberry has reached the temperature's treshold! Now it's at $temp C°."
 
-
-
-gradi."
-
- sendEmail -v  -f $mittente -t $dest -u $titolotemp -s $smtp -xu $username -xp $pass -m $tempresult
+ sendEmail -v  -f $sender -t $receiver -u object -s $smtp -xu $username -xp $pass -m $tempresult
 
 fi
-
 exit
