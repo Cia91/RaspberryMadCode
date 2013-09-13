@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+# This script is used for my WordClock project. It require an mcp23017 GPIO expander and wiringpi2.
+# The script simply check the time and turn on the respective led. The clock is in italian, but you can easly adapt it.
+
+# NOTICE: there are a lot of print output, these are not require, so you can comment them if you don't want a screen output.
+
+# www.raspberrygaming.tk
 
 import sys
 import time
@@ -24,8 +30,8 @@ for count in range(65,80):
 
 while True:
 
-	ora = time.strftime("%I", time.localtime(time.time()));
-	minuti = time.strftime("%M", time.localtime(time.time()));
+	ora = time.strftime("%I", time.localtime(time.time()));		#Takes the hour
+	minuti = time.strftime("%M", time.localtime(time.time()));	#Takes the minutes
 
 	#Convert values from String to Int
 	minuti = int(minuti)
@@ -43,6 +49,8 @@ while True:
 	wiringpi.digitalWrite(16, 1)
 	for count in range(65,80):
 		wiringpi.digitalWrite(count, 1)
+		
+	#Turn on the required led
 
 	if 0 <= minuti <= 2:
 		print "niente"
@@ -160,4 +168,4 @@ while True:
 		print "undici"
 		wiringpi.digitalWrite(69, 0)
 
-	sleep (60)
+	sleep (60)	#The clock have a 5 minute precision, so a 60 seconds loop will be good.
