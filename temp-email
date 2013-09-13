@@ -1,0 +1,34 @@
+#!/bin/bash
+
+
+
+############ Parametri da impostare ############
+user="pi"
+tempmax="55"
+mittente="youremail@gmail.com"
+dest="youremailoranother@gmail.com"
+smtp="smtp.gmail.com:587"
+username="youremail"	# WITHOUT @gmail.com
+pass="yourpassword"
+
+############ Fine Parametri ############
+
+
+
+temp="`cat /sys/class/thermal/thermal_zone0/temp | cut -c1-2`"
+
+if [ "$temp" -ge "$tempmax" ]; then
+
+ titolotemp="Allarme temperatura raspberry!"
+
+ tempresult="Occhio! Il raspberry ha superato la soglia di temperatura di controllo! Ora è³ a $temp
+
+
+
+gradi."
+
+ sendEmail -v  -f $mittente -t $dest -u $titolotemp -s $smtp -xu $username -xp $pass -m $tempresult
+
+fi
+
+exit
