@@ -1,6 +1,7 @@
 #!/bin/bash
 # This is a bash script thath check your Raspberry CPU temperature and if it reach a custom treashold it send you an email.
 # You can set this to start every X minute with cronjob.
+# www.raspberrygaming.tk
 
 
 ############ Parameters ############
