@@ -1,29 +1,26 @@
 #!/bin/bash
+# This is a bash script that check a GPIO input, and if it is to GND print an output.
+# This script require a pull-down circuit.
+# www.raspberrygaming.tk
 
 
+gpio mode 14 in         # 14 is the GPIO number, you can change it.
 
-gpio mode 14 in
-
-stato=`gpio read 14`
-
+state=`gpio read 14`
 
 
 while true
-
 do
 
+  state=`gpio read 14`
+  #echo $stato         # you can uncomment this if you want the output shown at video.
 
+  if [ $state = 0 ]; then
 
-  stato=`gpio read 14`
+         echo "something you want!"
 
-   #echo $stato
+         break
 
-        if [ $stato = 0 ]; then
-
-             ls
-
-             break
-
-        fi
+  fi
 
 done
